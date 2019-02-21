@@ -5,7 +5,7 @@ const User = require("../../models/User");
 const router = express.Router();
 const jwt = require("jsonwebtoken");
 const keys = require("../../config/keys");
-
+const passport = require("passport");
 router.get("/test", (req, res) => res.json({ msg: "Users works" }));
 
 router.post("/register", (req, res) => {
@@ -65,5 +65,13 @@ router.post("/login", (req, res) => {
     });
   });
 });
+
+router.get(
+  "/current",
+  passport.authenticate("jwt", { session: false }),
+  (req, res) => {
+    res.json(req.user);
+  }
+);
 
 module.exports = router;
