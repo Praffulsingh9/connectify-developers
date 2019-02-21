@@ -3,6 +3,8 @@ const gravatar = require("gravatar");
 const bcrypt = require("bcryptjs");
 const User = require("../../models/User");
 const router = express.Router();
+const jwt = require("jsonwebtoken");
+const keys = require("../../config/keys");
 
 router.get("/test", (req, res) => res.json({ msg: "Users works" }));
 
@@ -44,11 +46,19 @@ router.post("/login", (req, res) => {
 
   User.findOne({ email }).then(user => {
     if (!user) {
-      return releaseEvents.status(404).json({ email: "User not found" });
+      return res.status(404).json({ email: "User not found" });
     }
     bcrypt.compare(password, user.password).then(isMatch => {
       if (isMatch) {
-        res.json({ msg: "Success" });
+        //User matched
+        const payload = { id: user.id, name: user.name, avatar: user.avatar };
+        //Sign token
+        jwt.sign(payload, keys.secret, { expiresIn: 3600 }, (err, token) => {
+          res.json({
+            success: true,
+            token: "Bearer " + token
+          });
+        });
       } else {
         return res.status(400).json({ password: "Password incorrect" });
       }
