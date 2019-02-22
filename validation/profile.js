@@ -9,11 +9,11 @@ module.exports = function validateProfileInput(data) {
   data.skills = !isEmpty(data.skills) ? data.skills : "";
 
   if (!Validator.isLength(data.handle, { min: 2, max: 40 })) {
-    errors.handle = "Handle must be between 2 and 40 characters";
+    errors.handle = "Handle needs to between 2 and 40 characters";
   }
 
   if (Validator.isEmpty(data.handle)) {
-    errors.handle = "Profile Handle is required";
+    errors.handle = "Profile handle is required";
   }
 
   if (Validator.isEmpty(data.status)) {
@@ -24,39 +24,39 @@ module.exports = function validateProfileInput(data) {
     errors.skills = "Skills field is required";
   }
 
-  if (!Validator.isEmpty(data.website)) {
+  if (!isEmpty(data.website)) {
     if (!Validator.isURL(data.website)) {
-      errors.website = "Not a Valid Url";
+      errors.website = "Not a valid URL";
     }
   }
 
-  if (!Validator.isEmpty(data.youtube)) {
+  if (!isEmpty(data.youtube)) {
     if (!Validator.isURL(data.youtube)) {
-      errors.youtube = "Not a Valid Url";
+      errors.youtube = "Not a valid URL";
     }
   }
 
-  if (!Validator.isEmpty(data.twitter)) {
+  if (!isEmpty(data.twitter)) {
     if (!Validator.isURL(data.twitter)) {
-      errors.twitter = "Not a Valid Url";
+      errors.twitter = "Not a valid URL";
     }
   }
 
-  if (!Validator.isEmpty(data.facebook)) {
+  if (!isEmpty(data.facebook)) {
     if (!Validator.isURL(data.facebook)) {
-      errors.facebook = "Not a Valid Url";
+      errors.facebook = "Not a valid URL";
     }
   }
 
-  if (!Validator.isEmpty(data.instagram)) {
-    if (!Validator.isURL(data.instagram)) {
-      errors.instagram = "Not a Valid Url";
-    }
-  }
-
-  if (!Validator.isEmpty(data.linkedin)) {
+  if (!isEmpty(data.linkedin)) {
     if (!Validator.isURL(data.linkedin)) {
-      errors.linkedin = "Not a Valid Url";
+      errors.linkedin = "Not a valid URL";
+    }
+  }
+
+  if (!isEmpty(data.instagram)) {
+    if (!Validator.isURL(data.instagram)) {
+      errors.instagram = "Not a valid URL";
     }
   }
 
