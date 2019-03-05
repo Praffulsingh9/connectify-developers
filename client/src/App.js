@@ -4,6 +4,7 @@ import Footer from "./components/Layout/Footer";
 import Landing from "./components/Layout/Landing";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
+import Dashboard from "./components/dashboard/Dashboard";
 import { setCurrentUser, logoutUser } from "./actions/authActions";
 import { Provider } from "react-redux";
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -11,6 +12,7 @@ import jwt_decode from "jwt-decode";
 import setAuthToken from "./utils/setAuthToken";
 import store from "./store";
 import "./App.css";
+import { clearProfile } from "./actions/profileActions";
 
 if (localStorage.jwtToken) {
   setAuthToken(localStorage.jwtToken);
@@ -22,6 +24,7 @@ if (localStorage.jwtToken) {
 
   if (decoded.exp < currentTime) {
     store.dispatch(logoutUser());
+    store.dispatch(clearProfile());
     window.location.href = "/login";
   }
 }
@@ -37,6 +40,7 @@ class App extends Component {
             <div className="container">
               <Route exact path="/register" component={Register} />
               <Route exact path="/login" component={Login} />
+              <Route exact path="/dashboard" component={Dashboard} />
             </div>
             <Footer />
           </div>
