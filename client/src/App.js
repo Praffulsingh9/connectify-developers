@@ -5,6 +5,7 @@ import Landing from "./components/Layout/Landing";
 import Login from "./components/Auth/Login";
 import Register from "./components/Auth/Register";
 import Dashboard from "./components/dashboard/Dashboard";
+import NotFound from "./components/not-found/NotFound";
 import CreateProfile from "./components/create-profile/CreateProfile";
 import AddExperience from "./components/add-credentials/AddExperience";
 import AddEducation from "./components/add-credentials/AddEducation";
@@ -80,6 +81,7 @@ class App extends Component {
                   component={AddEducation}
                 />
               </Switch>
+              <Route exact path="/not-found" component={NotFound} />
             </div>
             <Footer />
           </div>
