@@ -12,7 +12,7 @@ class AddEducation extends Component {
     this.state = {
       school: "",
       degree: "",
-      fieldofstudy: "",
+      fieldOfStudy: "",
       from: "",
       to: "",
       current: false,
@@ -20,6 +20,10 @@ class AddEducation extends Component {
       errors: {},
       disabled: false
     };
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+    this.onCheck = this.onCheck.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -28,13 +32,13 @@ class AddEducation extends Component {
     }
   }
 
-  onSubmit = e => {
+  onSubmit(e) {
     e.preventDefault();
 
     const eduData = {
       school: this.state.school,
       degree: this.state.degree,
-      fieldofstudy: this.state.fieldofstudy,
+      fieldOfStudy: this.state.fieldOfStudy,
       from: this.state.from,
       to: this.state.to,
       current: this.state.current,
@@ -42,18 +46,18 @@ class AddEducation extends Component {
     };
 
     this.props.addEducation(eduData, this.props.history);
-  };
+  }
 
-  onChange = e => {
+  onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
-  };
+  }
 
-  onCheck = e => {
+  onCheck(e) {
     this.setState({
       disabled: !this.state.disabled,
       current: !this.state.current
     });
-  };
+  }
 
   render() {
     const { errors } = this.state;
@@ -88,10 +92,10 @@ class AddEducation extends Component {
                 />
                 <TextFieldGroup
                   placeholder="* Field of Study"
-                  name="fieldofstudy"
-                  value={this.state.fieldofstudy}
+                  name="fieldOfStudy"
+                  value={this.state.fieldOfStudy}
                   onChange={this.onChange}
-                  error={errors.fieldofstudy}
+                  error={errors.fieldOfStudy}
                 />
                 <h6>From Date</h6>
                 <TextFieldGroup
