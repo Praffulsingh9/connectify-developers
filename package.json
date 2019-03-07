@@ -1,6 +1,9 @@
 {
   "name": "connectify-developers",
   "version": "1.0.0",
+  "engines": {
+    "node": "10.3.0"
+  },
   "description": "Social network for Developers",
   "main": "server.js",
   "scripts": {
