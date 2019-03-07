@@ -186,9 +186,9 @@ router.delete(
         .map(item => item._id.toString())
         .indexOf(req.params.comment_id);
 
-      posts.comments.splice(removeIndex, 1);
+      post.comments.splice(removeIndex, 1);
 
-      posts
+      post
         .save()
         .then(post => res.json(post))
         .catch(err => res.status(404).json({ nocomment: "No Comment exist" }));
